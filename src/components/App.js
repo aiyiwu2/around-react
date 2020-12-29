@@ -127,7 +127,6 @@ debugger;
 				//setUserAvatar(res);
 			})
 
-	//Calls the initial cards from the API --don't forget the empty array
 	.then(()=>{
 		api
 			.getCardList()
