@@ -2,6 +2,10 @@ import React from 'react';
 import PopupWithForm from './PopupWithForm.js';
 
 function DeleteCardPopup(props) {
+    function handleSubmit(evt) {
+		evt.preventDefault();
+		props.onDeleteCard();
+	}
     return (
         <PopupWithForm
             name="delete-card"
@@ -9,6 +13,7 @@ function DeleteCardPopup(props) {
             buttonText="Yes"
             isOpen={props.isOpen}
             onClose={props.onClose}
+            onSubmit={handleSubmit}
         ></PopupWithForm>
     )
 }

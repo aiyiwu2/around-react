@@ -11,7 +11,7 @@ function PopupWithForm(props) {
             >
 
                 <form 
-                    className={`popup__form popup__form_type_${props.name}`} noValidate
+                    className={`popup__form popup__form_type_${props.name}`}
                 >
 
                     <div 
@@ -20,7 +20,7 @@ function PopupWithForm(props) {
                     </div>
 
                     <h3 
-                        className="popup__heading"
+                        className={`popup__heading popup__heading_type_${props.name}`}
                     >
                         {props.title}
                     </h3>
@@ -30,7 +30,7 @@ function PopupWithForm(props) {
                     <button 
                         type="submit" 
                         value="Save" 
-                        className="popup__button popup__button_disabled"
+                        className={`popup__button popup__button_disabled popup__button_type_${props.name}`}
                     >
                         {props.buttonText}
                     </button>

@@ -1,46 +1,69 @@
 import React from 'react';
 import api from '../utils/Api.js';
 import Card from './Card.js';
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main(props) {
 
+	const currentUser = React.useContext(CurrentUserContext);
     const [userName, setUserName] = React.useState("");
 	const [userDescription, setUserDescription] = React.useState("");
 	const [userAvatar, setUserAvatar] = React.useState("");
 	const [userCards, setUserCards] = React.useState([]);
 
-    React.useEffect(() => {
-		api
-			.getUserInfo()
-			.then((res) => {
+//     React.useEffect(() => {
+// 		api
+// 			.getUserInfo()
+// 			.then((res) => {
 
-				console.log(res);
-				setUserName(res);
-				setUserDescription(res);
-				setUserAvatar(res);
-			})
+// 				console.log(res);
+// 				//setCurrentUser(res);
+// 				setUserName(res);
+// 				setUserDescription(res);
+// 				setUserAvatar(res);
+// 			})
 
-	//Calls the initial cards from the API --don't forget the empty array
-	.then(()=>{
-		api
-			.getCardList()
-			.then((res) => {
-				console.log(res);
-				setUserCards(
-					res.map((card) => ({
-						name: card.name,
-						link: card.link,
-						likes: card.likes,
-						_id: card._id,
-						owner: card.owner,
-					}))
-				);
-			})
-			.catch((err) => console.log(err));
-	}, [])
+// 	//Calls the initial cards from the API --don't forget the empty array
+// 	.then(()=>{
+// 		api
+// 			.getCardList()
+// 			.then((res) => {
+// 				console.log(res);
+// 				setUserCards(
+// 					res.map((card) => ({
+// 						name: card.name,
+// 						link: card.link,
+// 						likes: card.likes,
+// 						_id: card._id,
+// 						owner: card.owner,
+// 					}))
+// 				);
+// 			})
+// 			.catch((err) => console.log(err));
+// 	}, [])
 
-	.catch((err) => console.log(err));
-}, []);
+// 	.catch((err) => console.log(err));
+// }, []);
+/*
+function handleCardLike(card) {
+
+	const isLiked = card.likes.some((i) => i._id === userInfo._id);
+	let res;
+
+	if (isLiked === false) {
+		res = api.addLikes(card._id);
+	} else {
+		res = api.removeLikes(card._id);
+	}
+	res
+		.then((newCard) => {
+			// Create a new array based on the existing one and putting a new card into it
+			const newCards = userCards.map((c) => (c._id === card._id ? newCard : c));
+			// Update the state
+			setUserCards(newCards);
+		})
+		.catch((err) => console.log(err));
+}*/
 
     return (
         <main className="content">
@@ -49,7 +72,7 @@ function Main(props) {
 
                     <div className="profile__avatar">
 
-                        <img className="profile__picture" alt="Profile picture" src={userAvatar.avatar} /> 
+                        <img className="profile__picture" alt="Profile picture" src={currentUser.avatar} /> 
 
                         <div className="profile__avatar-edit" onClick={props.handleEditAvatarClick}></div>
                         
@@ -57,9 +80,9 @@ function Main(props) {
 
                     <div className="profile__info">
 
-                        <h1 className="profile__title">{userName.name}</h1>
+                        <h1 className="profile__title">{currentUser.name}</h1>
 
-                        <p className="profile__subtitle">{userDescription.about}</p>
+                        <p className="profile__subtitle">{currentUser.about}</p>
 
                         <button className="profile__edit" onClick={props.handleEditProfileClick}></button>
                     
@@ -73,16 +96,16 @@ function Main(props) {
 
                     <ul className="cards__list">
 
-                        {userCards.map((card) => (
+                        {props.cards.map((card) => (
                             <Card
 							key={card._id}
 							src={card.link}
 							title={card.name}
 							likes={card.likes.length}
 							owner={card.owner}
-							onCardClick={() => props.handleCardClick(card.link, card.name)}
-							onDeleteClick={() => props.handleDeleteClick()}
-							onLikeClick={(card) => props.onLikeClick(card)}
+							handleCardClick={() => props.handleCardClick(card.link, card.name)}
+							handleDeleteClick={() => props.handleDeleteClick()}
+							handleLikeClick={() => props.handleLikeClick(card)}
 						/>
                         ))}
                     
