@@ -107,9 +107,7 @@ debugger;
     }
     res
       .then((newCard) => {
-        // Create a new array based on the existing one and putting a new card into it
         const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
-        // Update the state
         setCards(newCards);
       })
       .catch((err) => console.log(err));
