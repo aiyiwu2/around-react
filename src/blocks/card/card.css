@@ -8,6 +8,7 @@
 
 @import url(./__heart/_mode/card__heart_mode_like.css);
 @import url(./__delete/_mode/card__delete_mode_visible.css);
+@import url(./__delete/_mode/card__delete_mode_hidden.css);
 
 .card {
     background: #FFFFFF;

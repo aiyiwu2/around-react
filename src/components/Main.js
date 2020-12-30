@@ -96,15 +96,16 @@ function handleCardLike(card) {
 
                     <ul className="cards__list">
 
-                        {props.cards.map((card) => (
+                        {props.cards.map((card, i) => (
                             <Card
-							key={card._id}
+							id={card._id}
+							key={i}
 							src={card.link}
 							title={card.name}
-							likes={card.likes.length}
+							likes={card.likes}
 							owner={card.owner}
 							handleCardClick={() => props.handleCardClick(card.link, card.name)}
-							handleDeleteClick={() => props.handleDeleteClick()}
+							handleDeleteClick={props.handleDeleteClick}
 							handleLikeClick={() => props.handleLikeClick(card)}
 						/>
                         ))}

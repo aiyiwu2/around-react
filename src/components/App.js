@@ -18,7 +18,8 @@ function App() {
 	const [isEditProfileOpen, setIsEditProfileOpen] = React.useState(false);
 	const [isAddPlaceOpen, setIsAddPlaceOpen] = React.useState(false);
 	const [isDeleteOpen, setIsDeleteOpen] = React.useState(false);
-    const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
+	const [cardToDelete, setCardToDelete] = React.useState("");
+	const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
     const [cardLink, setCardLink] = React.useState("");
   const [cardTitle, setCardTitle] = React.useState("");
   const [cards, setCards] = React.useState([]);
@@ -35,7 +36,8 @@ function App() {
 		setIsAddPlaceOpen(true);
 	}
 
-	function handleDeleteClick() {
+	function handleDeleteClick(id) {
+		setCardToDelete(id);
 		setIsDeleteOpen(true);
     }
     
@@ -54,11 +56,11 @@ function App() {
   }
   
   
-	function handleCardDelete(card) {
+	function handleCardDelete() {
 		api
-			.removeCard(card._id)
-			.then(() => {
-				const listCopy = cards.filter((c) => c._id !== card._id);
+			.removeCard(cardToDelete)
+			.then((res) => {
+				const listCopy = cards.filter((c) => c._id !== cardToDelete);
 				setCards(listCopy);
 			})
 			.catch((err) => console.log(err));
@@ -131,12 +133,13 @@ debugger;
 			.then((res) => {
 				console.log(res);
 				setCards(
-					res.map((card) => ({
+					res.map((card, index) => ({
 						name: card.name,
 						link: card.link,
 						likes: card.likes,
 						_id: card._id,
 						owner: card.owner,
+						key: index,
 					}))
 				);
 			})

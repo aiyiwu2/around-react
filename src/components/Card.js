@@ -1,7 +1,7 @@
 import React from 'react';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Card(props) {
+function Card(props, index) {
   const currentUserContext = React.useContext(CurrentUserContext);
 
   const isOwn = props.owner._id === currentUserContext._id;
@@ -33,7 +33,7 @@ function Card(props) {
       }
 
     return (
-    <li className="card">
+    <li className="card" key={index}>
 
         <button className={cardDeleteButtonClassName} onClick={handleDeleteClick} src="../images/cardDelete.svg" /*style={{visibility: cardRemoveButtonClassName}}*/></button>
 
