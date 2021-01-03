@@ -15,10 +15,10 @@ function Card(props, index) {
 	}`;
 
 
-	//const isLiked = props.likes.some((i) => i._id === currentUserContext._id);
+	const isLiked = props.likes.some((i) => i._id === currentUserContext._id);
 
 
-	//const cardLikeButtonClassName = `card__heart ${isLiked ? "card__heart_mode_like" : "card__heart"}`;
+	const cardLikeButtonClassName = `card__heart ${isLiked ? "card__heart_mode_like" : "card__heart"}`;
 
     function handleCardClick() {
 		props.handleCardClick(props.card);
@@ -29,7 +29,7 @@ function Card(props, index) {
       }
 
     function handleDeleteClick() {
-        props.handleDeleteClick(props.card);
+        props.handleDeleteClick(props.id);
       }
 
     return (
@@ -44,8 +44,8 @@ function Card(props, index) {
             <h2 className="card__title">{props.title}</h2>
 
             <div className="card__heart-container">
-                <button className="card__heart" onClick={handleLikeClick}></button>
-                <p className="card__heart-score">{props.likes}</p>
+                <button className={cardLikeButtonClassName} onClick={handleLikeClick}></button>
+                <p className="card__heart-score">{props.likes.length}</p>
             </div>
 
         </div>

@@ -63,6 +63,7 @@ function App() {
 				const listCopy = cards.filter((c) => c._id !== cardToDelete);
 				setCards(listCopy);
 			})
+			.then(() => setIsDeleteOpen(false))
 			.catch((err) => console.log(err));
 	}
 
@@ -97,8 +98,7 @@ function App() {
   }
   
   function handleLikeClick(card) {
-console.log(card);
-debugger;
+
     const isLiked = card.likes.some((i) => i._id === userInfo._id);
     let res;
   
@@ -106,13 +106,18 @@ debugger;
       res = api.addCardLike(card._id);
     } else {
       res = api.deleteCardLike(card._id);
-    }
+	}
+	
+	console.log(isLiked)
+
     res
       .then((newCard) => {
         const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
         setCards(newCards);
       })
-      .catch((err) => console.log(err));
+	  .catch((err) => console.log(err));
+	  
+	  debugger;
   }
 
   React.useEffect(() => {
