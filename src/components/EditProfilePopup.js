@@ -2,6 +2,22 @@ import React from 'react';
 import PopupWithForm from './PopupWithForm.js';
 
 function EditProfilePopup(props) {
+    const [name, setName] = React.useState('');
+    const [description, setDescription] = React.useState('');
+  
+    function handleNameChange(e) {
+      setName(e.target.value);
+    }
+  
+    function handleDescriptionChange(e) {
+      setDescription(e.target.value);
+    }
+
+    function submitHandler(e) {
+        e.preventDefault()
+        props.handleUpdateUser(name, description)
+    }
+
     return (
         <PopupWithForm
         name="edit-profile"
@@ -9,6 +25,7 @@ function EditProfilePopup(props) {
         buttonText="Save"
         isOpen={props.isOpen}
         onClose={props.onClose}
+        onSubmit={submitHandler}
         >
 
             <input 
@@ -20,6 +37,7 @@ function EditProfilePopup(props) {
                 required 
                 minLength="2" 
                 maxLength="40" 
+                onChange={handleNameChange}
             />
 
             <span 
@@ -36,6 +54,7 @@ function EditProfilePopup(props) {
                 required 
                 minLength="2" 
                 maxLength="200" 
+                onChange={handleDescriptionChange}
             />
 
             <span 

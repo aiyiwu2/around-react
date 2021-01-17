@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PopupWithForm from './PopupWithForm.js';
 
 function EditAvatarPopup(props) {
+    const [link, setLink] = useState()
+
+    function handleLinkChange(e) {
+        setLink(e.target.value)
+    }
+
+    function handleAvatarChange(e) {
+        e.preventDefault()
+        props.handleUpdateAvatar(link);
+    }
+
     return (
         <PopupWithForm
             name="edit-avatar"
@@ -9,6 +20,7 @@ function EditAvatarPopup(props) {
             buttonText="Save"
             isOpen={props.isOpen}
             onClose={props.onClose}
+            onSubmit={handleAvatarChange}
         >
 
             <input 
@@ -19,6 +31,7 @@ function EditAvatarPopup(props) {
                 className="popup__input popup__input_type_avatar" 
                 minLength="2" 
                 required 
+                onChange={handleLinkChange}
             />
 
             <span 

@@ -30,7 +30,7 @@ function PopupWithForm(props) {
                     <button 
                         type="submit" 
                         value="Save" 
-                        className={`popup__button popup__button_disabled popup__button_type_${props.name}`}
+                        className={`popup__button popup__button_type_${props.name}`}
                     >
                         {props.buttonText}
                     </button>
