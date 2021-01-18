@@ -6,10 +6,6 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 function Main(props) {
 
 	const currentUser = React.useContext(CurrentUserContext);
-    const [userName, setUserName] = React.useState("");
-	const [userDescription, setUserDescription] = React.useState("");
-	const [userAvatar, setUserAvatar] = React.useState("");
-	const [userCards, setUserCards] = React.useState([]);
 
     return (
         <main className="content">
