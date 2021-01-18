@@ -121,39 +121,33 @@ function App() {
 			})
 			.catch((err) => console.log(err));
 
-		// debugger;
 	}
 
 	React.useEffect(() => {
-		api
-			.getUserInfo()
-			.then((res) => {
-				setCurrentUser(res);
-				//setUserName(res);
-				//setUserDescription(res);
-				//setUserAvatar(res);
-			})
-			.then(() => {
-				api
-					.getCardList()
-					.then((res) => {
-						// console.log(res);
-						setCards(
-							res.map((card, index) => ({
-								name: card.name,
-								link: card.link,
-								likes: card.likes,
-								_id: card._id,
-								owner: card.owner,
-								key: index,
-							}))
-						);
-					})
-					.catch((err) => console.log(err));
-			}, [])
+        api
+            .getUserInfo()
+            .then((res) => {
+                setCurrentUser(res);
+            })
+            .catch((err) => console.log(err));
 
-			.catch((err) => console.log(err));
-	}, []);
+            api
+            .getCardList()
+            .then((res) => {
+                setCards(
+                    res.map((card, index) => ({
+                        name: card.name,
+                        link: card.link,
+                        likes: card.likes,
+                        _id: card._id,
+                        owner: card.owner,
+                        key: index,
+                    }))
+                );
+            })
+            .catch((err) => console.log(err));
+
+    }, []);
 
 	return (
 		<CurrentUserContext.Provider value={currentUser}>
