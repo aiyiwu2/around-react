@@ -6,8 +6,8 @@ import AddCardPopup from './AddCardPopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js';
 import EditProfilePopup from './EditProfilePopup.js';
 import DeleteCardPopup from './DeleteCardPopup.js';
-import PopupWithImage from './PopupWithImage.js';
-import api from '../utils/Api.js';
+import ImagePopup from './ImagePopup.js';
+import api from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
 
@@ -31,7 +31,6 @@ function App() {
 	}
 
 	function handleEditProfileClick() {
-		// console.log('!!!')
 		setIsEditProfileOpen(true);
 	}
 	function handleAddPlaceClick() {
@@ -189,7 +188,7 @@ function App() {
 
 				<DeleteCardPopup isOpen={isDeleteOpen} onClose={handlePopupClose} onDeleteCard={handleCardDelete} />
 
-				<PopupWithImage
+				<ImagePopup
 					isOpen={isImagePopupOpen}
 					onClose={handlePopupClose}
 					title={cardTitle}

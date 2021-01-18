@@ -30,12 +30,14 @@ function Card(props, index) {
 
     function handleDeleteClick() {
         props.handleDeleteClick(props.id);
+        console.log(props)
+        console.log(props.id)
       }
 
     return (
-    <li className="card" key={index}>
+    <li className="card">
 
-        <button className={cardDeleteButtonClassName} onClick={handleDeleteClick} src="../images/cardDelete.svg" /*style={{visibility: cardRemoveButtonClassName}}*/></button>
+        <button className={cardDeleteButtonClassName} onClick={handleDeleteClick} src="../images/cardDelete.svg"></button>
 
         <img className="card__image" src={props.src} alt={props.title} onClick={handleCardClick} />
             

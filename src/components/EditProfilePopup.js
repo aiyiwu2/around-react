@@ -37,6 +37,7 @@ function EditProfilePopup(props) {
                 required 
                 minLength="2" 
                 maxLength="40" 
+                value={name}
                 onChange={handleNameChange}
             />
 
@@ -54,6 +55,7 @@ function EditProfilePopup(props) {
                 required 
                 minLength="2" 
                 maxLength="200" 
+                value={description}
                 onChange={handleDescriptionChange}
             />
 

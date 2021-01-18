@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PopupWithForm from './PopupWithForm.js';
 
 function EditAvatarPopup(props) {
-    const [link, setLink] = useState()
+    const [link, setLink] = useState('');
 
     function handleLinkChange(e) {
         setLink(e.target.value)
@@ -31,6 +31,7 @@ function EditAvatarPopup(props) {
                 className="popup__input popup__input_type_avatar" 
                 minLength="2" 
                 required 
+                value={link}
                 onChange={handleLinkChange}
             />
 
