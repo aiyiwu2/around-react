@@ -23,7 +23,7 @@ function App() {
 	const [cardLink, setCardLink] = React.useState("");
 	const [cardTitle, setCardTitle] = React.useState("");
 	const [cards, setCards] = React.useState([]);
-	const [currentUser, setCurrentUser] = React.useState("");
+	const [currentUser, setCurrentUser] = React.useState({});
 	const [userInfo, setUserInfo] = React.useState({});
 
 	function handleEditAvatarClick() {
