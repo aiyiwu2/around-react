@@ -4,11 +4,7 @@ import PopupWithForm from './PopupWithForm.js';
 function EditAvatarPopup(props) {
     const avatarRef = React.useRef() 
     function handleSubmit(e) {
-        debugger;
         e.preventDefault();
-        console.log(avatarRef)
-        console.log(avatarRef.current)
-        debugger;
         props.handleUpdateAvatar(avatarRef.current.value)
     }
     return (
@@ -22,6 +18,7 @@ function EditAvatarPopup(props) {
         >
 
             <input 
+                ref={avatarRef}
                 id="avatar-image" 
                 type="url" 
                 name="avatar" 
